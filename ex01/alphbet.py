@@ -1,9 +1,11 @@
 from random import randint
 from this import d
 from turtle import Turtle
+
 m=10
 kieru=2
 count=0
+
 def mozi():
     global m
     mozis=""
@@ -13,6 +15,7 @@ def mozi():
         mozis+=(chr(num)+" ")
         mozis2+=chr(num)
     return mozis,mozis2
+
 def dele(a,b):
     global kieru,m
     kietamozi=[]
@@ -22,6 +25,7 @@ def dele(a,b):
         m=m-1
         kietamozi.append(x.pop(s))
     return kietamozi ,x
+
 def ans(a,b):
     global count
     c=0
@@ -41,6 +45,7 @@ def ans(a,b):
         print("不正解もう一度")
         count+=1
         return 0
+        
 while True:
     mozi=mozi()
     print(mozi[0])
