@@ -60,7 +60,10 @@ def kaizyo(event):
     
 
 a=0
-list=[[5,1],[4,0],[4,1],[4,2],[3,0],[3,1],[3,2],[2,0],[2,1],[2,2]]
+list=[[5,1],[4,0],[4,1],
+      [4,2],[3,0],[3,1],
+      [3,2],[2,0],[2,1],
+      [2,2]]
 for i,j in list:
     button=tk.Button(root,text=a,font=font,width=4,height=1,bg="black",fg="white")
     button.bind("<1>",button_click)
