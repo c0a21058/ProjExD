@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.messagebox as tkm
 
 root =tk.Tk()
-root.title("a")
+root.title("高機能電卓")
 font=("Time New Roman",30)
 
 
