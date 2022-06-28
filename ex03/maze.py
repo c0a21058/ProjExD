@@ -4,7 +4,7 @@ import random
 
 
 key=""
-cx,cy=150,150
+cx,cy=150,150#こうかとんの初期座標
 mx,my=1,1
 tmr=0
 j=None
@@ -26,8 +26,8 @@ def startgoal():  #スタートとゴールを決める関数
         goal_y = random.randint(5,8)                                    
         if maze_list[goal_y][goal_x] == 0:                              
             break                                                        
-    canvas.create_rectangle(100,100,200,200,fill = "black")               
-    canvas.create_rectangle(goal_x*100,goal_y*100,(goal_x*100)+100,
+    canvas.create_rectangle(100,100,200,200,fill = "black")  #スタート地点を黒にする             
+    canvas.create_rectangle(goal_x*100,goal_y*100,(goal_x*100)+100,#ゴールを赤くする
     (goal_y*100)+100,fill = "red")
 
 def key_down(event):
