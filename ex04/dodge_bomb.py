@@ -93,26 +93,26 @@ def main():
             if key_states[pg.K_RIGHT]==True: 
                 tori_rct.centerx-=1#x座標を-1
 
-        screen_sfc.blit(tori_sfc,tori_rct) 
-        screen_sfc.blit(nise_tori_sfc,nise_tori_rct) 
-        screen_sfc.blit(nise_tori_sfc1,nise_tori_rct1) 
+        screen_sfc.blit(tori_sfc,tori_rct) #こうかとんをscreenに呼び出し
+        screen_sfc.blit(nise_tori_sfc,nise_tori_rct) #偽こうかとんをscreenに呼び出し
+        screen_sfc.blit(nise_tori_sfc1,nise_tori_rct1) #偽こうかとんをscreenに呼び出し
         bomimg_rct.move_ip(vx,vy)
         nise_bomimg_rct1.move_ip(vx1,vy1)
         star_rct.move_ip(sx,sy)
 
-        screen_sfc.blit(bom_sfc,bomimg_rct)
-        screen_sfc.blit(nise_bom_sfc1,nise_bomimg_rct1)
-        screen_sfc.blit(star_sfc,star_rct)
+        screen_sfc.blit(bom_sfc,bomimg_rct)#爆弾をscreenに呼び出し
+        screen_sfc.blit(nise_bom_sfc1,nise_bomimg_rct1)#偽爆弾をscreenに呼び出し
+        screen_sfc.blit(star_sfc,star_rct)#スターをscreenに呼び出し
 
-        yoko,tate=check(bomimg_rct,screen_rct)
+        yoko,tate=check(bomimg_rct,screen_rct)#爆弾の反射
         vx*=yoko
         vy*=tate
 
-        yoko,tate=check(nise_bomimg_rct1,screen_rct)
+        yoko,tate=check(nise_bomimg_rct1,screen_rct)#にせ爆弾の反射
         vx1*=yoko
         vy1*=tate
 
-        yoko,tat=check(star_rct,screen_rct)
+        yoko,tat=check(star_rct,screen_rct)#スターの反射
         sx*=yoko
         sy*=tate
         if tori_rct.colliderect(star_rct):#星に当たると無敵になる
@@ -120,15 +120,11 @@ def main():
         if tori=="無敵":
             screen_sfc.blit(tori_sfc1,tori_rct1) 
 
-        if tori_rct.colliderect(bomimg_rct):
-            if tori=="無敵":
+        if tori_rct.colliderect(bomimg_rct):#こうかとんと爆弾が接触した時の判定
+            if tori=="無敵":#無敵なら何も起きない
                 pass
-            elif tori=="":
+            elif tori=="":#無敵でないならゲームオーバー
                 return 
-
-
-    
-
 
         pg.display.update()
         clock.tick(1000)
