@@ -93,7 +93,10 @@ class bomb:
         if  self.rct.centery >scr.rct.height :
               self.rct.centery = -random.randint(0,1000)
         
-
+def ongaku():#宮田拓馬
+    pg.mixer.init()
+    pg.mixer.music.load("C:/Users/admin/Desktop/ProjExD2022_2/ProjExD-1/ex06/fig/魔王魂 旧ゲーム音楽 戦闘曲メドレー01.mp3")
+    pg.mixer.music.play(-1)#無限ループさせる
 
 
 def main():
@@ -101,14 +104,15 @@ def main():
     font = pg.font.Font(None, 55)
     score = 0
     clock = pg.time.Clock()
-    scr = Screen("見分けろ！こうかとん", (1600, 900), "ex04/pg_bg.jpg")
-    kkt = Bird("ex04/fig/6.png", a, (900, 400))
+    scr = Screen("見分けろ！こうかとん", (1600, 900), "ex06/pg_bg.jpg")
+    kkt = Bird("ex06/fig/9.png", a, (900, 400))
     food1= food((255,255,0), 30, (-1,0), scr)#一つ目の餌を作成
     food2= food((255,255,0), 30, (-1,0), scr)#二つ目の餌を作成
     food3= food((255,255,0), 30, (-1,0), scr)#三つ目の餌を作成
     bomb1=bomb((255,0,0),30,(0,+1),scr)#一つ目の爆弾
     bomb2=bomb((255,0,0),30,(0,+1),scr)#二つ目の爆弾
     bomb3=bomb((255,0,0),30,(0,+1),scr)#三つ目の爆弾
+    #ongaku()#音楽を流す関　　宮田拓馬
 
  
 
