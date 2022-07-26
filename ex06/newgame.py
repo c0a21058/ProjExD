@@ -4,7 +4,6 @@ import random
 
 
 width = 1600
-
 class Screen:
     def __init__(self, title, wh, image):
         pg.display.set_caption(title)
@@ -97,7 +96,7 @@ class bomb:
 
 
 def main():
-    a=2.0
+    a=2
     font = pg.font.Font(None, 55)
     score = 0
     clock = pg.time.Clock()
@@ -113,6 +112,7 @@ def main():
  
 
     while True:
+
         scr.blit()
         text = font.render(str(score), True, (255,0,0))   # 描画する文字列の設定
         scr.sfc.blit(text, [1600//2, 100])
@@ -154,7 +154,7 @@ def main():
         if kkt.rct.colliderect(bomb3.rct):##三つ目の爆弾と当たった時にスコアを-１して餌を画面外に移動
             score-=1
             bomb3=bomb((255,0,0),30,(0,-1),scr)
-        
+
         if score<0:#スコアがマイナスになったらゲームを強制終了
             return 
 
