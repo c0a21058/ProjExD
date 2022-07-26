@@ -43,13 +43,13 @@ class Bird:
         # # 練習7
         if check_bound(self.rct, scr.rct) != (1, 1): # 領域外だったら
             if key_states[pg.K_UP]: 
-                self.rct.centery += 1
+                self.rct.centery += 2
             if key_states[pg.K_DOWN]: 
-                self.rct.centery -= 1
+                self.rct.centery -= 2
             if key_states[pg.K_LEFT]: 
-                self.rct.centerx += 1
+                self.rct.centerx += 2
             if key_states[pg.K_RIGHT]: 
-                self.rct.centerx -= 1
+                self.rct.centerx -= 2
         self.blit(scr)
     
 
@@ -108,14 +108,16 @@ def main():
     font = pg.font.Font(None, 55)
     score = 0
     clock = pg.time.Clock()
-    scr = Screen("見分けろ！こうかとん", (1600, 900), "ProjExD-2/ex06/fig/pg_bg.jpg")
-    kkt = Bird("ProjExD-2/ex06/fig/6.png", a, (900, 400))
-    food1= food((255,255,0), 30, (-1,0), scr)#一つ目の餌を作成
-    food2= food((255,255,0), 30, (-1,0), scr)#二つ目の餌を作成
-    food3= food((255,255,0), 30, (-1,0), scr)#三つ目の餌を作成
-    bomb1=bomb((255,0,0),30,(0,+1),scr)#一つ目の爆弾
-    bomb2=bomb((255,0,0),30,(0,+1),scr)#二つ目の爆弾
-    bomb3=bomb((255,0,0),30,(0,+1),scr)#三つ目の爆弾
+
+    scr = Screen("見分けろ！こうかとん", (1600, 900), "ex04/pg_bg.jpg")
+    kkt = Bird("ex04/fig/6.png", a, (900, 400))
+    food1= food((255,255,0), 30, (-3,0), scr)#一つ目の餌を作成
+    food2= food((255,255,0), 40, (-2,0), scr)#二つ目の餌を作成
+    food3= food((255,255,0), 50, (-1,0), scr)#三つ目の餌を作成
+    bomb1=bomb((255,0,0),30,(0,+3),scr)#一つ目の爆弾
+    bomb2=bomb((255,0,0),40,(0,+2),scr)#二つ目の爆弾
+    bomb3=bomb((255,0,0),50,(0,+1),scr)#三つ目の爆弾
+
 
     music()
 
@@ -140,27 +142,27 @@ def main():
 
         if kkt.rct.colliderect(food1.rct):#一つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
             score += 1
-            food1= food((255,255,0), 30, (-1,0), scr)
+            food1= food((255,255,0), 30, (-3,0), scr)
         
         if kkt.rct.colliderect(food2.rct):##二つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
             score += 1
-            food2= food((255,255,0), 30, (-1,0), scr)
+            food2= food((255,255,0), 40, (-2,0), scr)
         
         if kkt.rct.colliderect(food3.rct):##三つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
             score += 1
-            food3= food((255,255,0), 30, (-1,0), scr)
+            food3= food((255,255,0), 50, (-1,0), scr)
         
         if kkt.rct.colliderect(bomb1.rct):##一つ目の爆弾と当たった時にスコアを-１して餌を画面外に移動
             score-=1
-            bomb1=bomb((255,0,0),30,(0,-1),scr)
+            bomb1=bomb((255,0,0),30,(0,+3),scr)
         
         if kkt.rct.colliderect(bomb2.rct):#二つ目の爆弾と当たった時にスコアを-１して餌を画面外に移動
             score-=1
-            bomb2=bomb((255,0,0),30,(0,-1),scr)
+            bomb2=bomb((255,0,0),40,(0,+2),scr)
 
         if kkt.rct.colliderect(bomb3.rct):##三つ目の爆弾と当たった時にスコアを-１して餌を画面外に移動
             score-=1
-            bomb3=bomb((255,0,0),30,(0,-1),scr)
+            bomb3=bomb((255,0,0),50,(0,+1),scr)
         
         if score<0:#スコアがマイナスになったらゲームを強制終了
             return 
