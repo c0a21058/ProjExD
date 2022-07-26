@@ -52,7 +52,7 @@ class Bird:
     
 
 
-
+"""
 class food:
     def __init__(self, color, size, vxy, scr: Screen):
         global width
@@ -72,6 +72,27 @@ class food:
         self.blit(scr)   
         if  self.rct.centerx <0 :
              self.rct.centerx = 1700+random.randint(10,1000)
+"""
+class teki:#上から降ってくる敵クラス C0A21120宮田拓馬
+    def __init__(self,size,image,vxy,scr: Screen):
+        self.sfc = pg.image.load(image)                   
+        self.sfc = pg.transform.rotozoom(self.sfc, 0,size)
+        self.rct = self.sfc.get_rect()                   
+        self.rct=self.sfc.get_rect() # Rect
+        self.rct.centerx = random.randint(0,900)
+        self.rct.centery = 1000
+        self.vx, self.vy = vxy # 練習6
+
+
+    def blit(self,scr: Screen):
+        scr.sfc.blit(self.sfc,self.rct)
+    
+    def update(self,scr: Screen):#移動を制御
+        self.rct.move_ip(self.vx, self.vy)
+        self.blit(scr)
+        if self.rct.centery>scr.rct.height:
+            self.rct.centery=0
+
 
 class bomb:
     def __init__(self, color, size, vxy, scr: Screen):
@@ -95,7 +116,7 @@ class bomb:
         
 def ongaku():#宮田拓馬
     pg.mixer.init()
-    pg.mixer.music.load("C:/Users/admin/Desktop/ProjExD2022_2/ProjExD-1/ex06/fig/魔王魂 旧ゲーム音楽 戦闘曲メドレー01.mp3")
+    pg.mixer.music.load("ProjExD-1/ex06/fig/魔王魂 旧ゲーム音楽 戦闘曲メドレー01.mp3")
     pg.mixer.music.play(-1)#無限ループさせる
 
 
@@ -104,11 +125,20 @@ def main():
     font = pg.font.Font(None, 55)
     score = 0
     clock = pg.time.Clock()
-    scr = Screen("見分けろ！こうかとん", (1600, 900), "ex06/pg_bg.jpg")
-    kkt = Bird("ex06/fig/9.png", a, (900, 400))
-    food1= food((255,255,0), 30, (-1,0), scr)#一つ目の餌を作成
-    food2= food((255,255,0), 30, (-1,0), scr)#二つ目の餌を作成
-    food3= food((255,255,0), 30, (-1,0), scr)#三つ目の餌を作成
+    scr = Screen("見分けろ！こうかとん", (1600, 900), "ProjExD-1/ex06/fig/pg_bg.png")
+    kkt = Bird("ProjExD-1/ex06/fig/9.png", a, (900, 400))
+
+    xsp=random.randint(1,4)#C0A21120  宮田拓馬
+    xsp1=random.randint(1,4)
+    xsp2=random.randint(1,4)
+
+    anemy = teki(0.5,"ProjExD-1/ex06/fig/敵３.png",(0,xsp),scr)#敵を生成   C0A21120宮田拓馬
+    anemy1 = teki(0.5,"ProjExD-1/ex06/fig/敵５.png",(0,xsp1),scr)#敵を生成
+    anemy2 = teki(0.5,"ProjExD-1/ex06/fig/敵４.png",(0,xsp2),scr)#敵を生成
+    
+    #food1= food((255,255,0), 30, (-1,0), scr)#一つ目の餌を作成
+    #food2= food((255,255,0), 30, (-1,0), scr)#二つ目の餌を作成
+    #food3= food((255,255,0), 30, (-1,0), scr)#三つ目の餌を作成
     bomb1=bomb((255,0,0),30,(0,+1),scr)#一つ目の爆弾
     bomb2=bomb((255,0,0),30,(0,+1),scr)#二つ目の爆弾
     bomb3=bomb((255,0,0),30,(0,+1),scr)#三つ目の爆弾
@@ -128,24 +158,29 @@ def main():
 
 
         kkt.update(scr)
-        food1.update(scr)
-        food2.update(scr)
-        food3.update(scr)
+        #food1.update(scr)
+        #food2.update(scr)
+        #food3.update(scr)
         bomb1.update(scr)
         bomb2.update(scr)
         bomb3.update(scr)
 
-        if kkt.rct.colliderect(food1.rct):#一つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
-            score += 1
-            food1= food((255,255,0), 30, (-1,0), scr)
+        anemy.update(scr)# 敵の更新をおこなう C0A21120 宮田拓馬
+        anemy1.update(scr)
+        anemy2.update(scr)
+
+
+        #if kkt.rct.colliderect(food1.rct):#一つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
+        #    score += 1
+        #    food1= food((255,255,0), 30, (-1,0), scr)
         
-        if kkt.rct.colliderect(food2.rct):##二つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
-            score += 1
-            food2= food((255,255,0), 30, (-1,0), scr)
+        #if kkt.rct.colliderect(food2.rct):##二つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
+        #    score += 1
+        #    food2= food((255,255,0), 30, (-1,0), scr)
         
-        if kkt.rct.colliderect(food3.rct):##三つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
-            score += 1
-            food3= food((255,255,0), 30, (-1,0), scr)
+        #if kkt.rct.colliderect(food3.rct):##三つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
+        #    score += 1
+        #    food3= food((255,255,0), 30, (-1,0), scr)
         
         if kkt.rct.colliderect(bomb1.rct):##一つ目の爆弾と当たった時にスコアを-１して餌を画面外に移動
             score-=1
@@ -162,6 +197,42 @@ def main():
         if score<0:#スコアがマイナスになったらゲームを強制終了
             return 
 
+
+        #tekiに当たった時の処理 C0A21120 宮田拓馬
+        if kkt.rct.colliderect(anemy.rct):
+            score-=200
+            anemy.rct.move_ip(900,xsp)
+            anemy.rct.centerx = random.randint(0,1600)
+    
+        if kkt.rct.colliderect(anemy1.rct):
+            score-=500
+            anemy1.rct.move_ip(900,xsp)
+            anemy1.rct.centerx = random.randint(0,1600)
+
+        if kkt.rct.colliderect(anemy2.rct):
+            score-=1000
+            anemy2.rct.move_ip(900,xsp)
+            anemy2.rct.centerx = random.randint(0,1600)
+
+        if score<0:
+            return
+
+
+        #tekiが画面外に出たときの処理 C0A21120 宮田拓馬
+        
+        if anemy.rct.bottom<=0: # 領域外  
+            anemy.rct.move_ip(xsp,900)
+            anemy.rct.centerx = random.randint(0,1600) 
+
+        if  anemy1.rct.bottom<=0:# 領域外
+            anemy1.rct.move_ip(xsp,900)
+            anemy1.rct.centerx = random.randint(0,1600)
+
+        if anemy2.rct.bottom<=0: # 領域外
+            anemy2.rct.move_ip(xsp,900)
+            anemy2.rct.centerx = random.randint(0,1600)
+            
+        
 
         pg.display.update()
         clock.tick(1000)
