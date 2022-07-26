@@ -1,6 +1,8 @@
 import pygame as pg
 import sys
 import random
+import pygame.mixer
+
 
 
 width = 1600
@@ -92,6 +94,11 @@ class bomb:
         self.blit(scr)   
         if  self.rct.centery >scr.rct.height :
               self.rct.centery = -random.randint(0,1000)
+    
+def music():
+    pygame.mixer.init()
+    pygame.mixer.music.load("ProjExD-2/ex06/MusMus-BGM-146.mp3")
+    pygame.mixer.music.play(-1)
         
 
 
@@ -101,6 +108,7 @@ def main():
     font = pg.font.Font(None, 55)
     score = 0
     clock = pg.time.Clock()
+
     scr = Screen("見分けろ！こうかとん", (1600, 900), "ex04/pg_bg.jpg")
     kkt = Bird("ex04/fig/6.png", a, (900, 400))
     food1= food((255,255,0), 30, (-3,0), scr)#一つ目の餌を作成
@@ -110,7 +118,8 @@ def main():
     bomb2=bomb((255,0,0),40,(0,+2),scr)#二つ目の爆弾
     bomb3=bomb((255,0,0),50,(0,+1),scr)#三つ目の爆弾
 
- 
+
+    music()
 
     while True:
         scr.blit()
