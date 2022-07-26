@@ -202,10 +202,10 @@ def main():
             anemy.rct.centerx = random.randint(0,1600) 
 
         if  anemy1.rct.bottom<=0:# 領域外
-            anemy1 = teki(0.5,"ex06/fig/敵５.png",(0,xsp1),scr)
+            anemy1 = teki(0.5,"ex06/fig/敵５.png",(0,xsp),scr)
 
         if anemy2.rct.bottom<=0: # 領域外
-            anemy2 = teki(0.5,"ex06/fig/敵４.png",(0,xsp2),scr)
+            anemy2 = teki(0.5,"ex06/fig/敵４.png",(0,xsp),scr)
             
         
 
