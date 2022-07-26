@@ -60,7 +60,6 @@ class Bird:
         self.blit(scr)
     
 
-
 class food:
 
     def __init__(self, color, size, vxy, scr: Screen):
@@ -73,7 +72,7 @@ class food:
         self.rct.centerx = 1700+random.randint(10,1000)
         self.rct.centery = random.randint(0, scr.rct.height)
         self.vx, self.vy = vxy 
-        
+
     def blit(self, scr: Screen):
         scr.sfc.blit(self.sfc, self.rct)
 
@@ -83,6 +82,8 @@ class food:
         if  self.rct.centerx <0 :
 
              self.rct.centerx = 1700+random.randint(10,1000)
+
+
 class teki:#上から降ってくる敵クラス C0A21120宮田拓馬
 
     def __init__(self,size,image,vxy,scr: Screen):
@@ -95,11 +96,9 @@ class teki:#上から降ってくる敵クラス C0A21120宮田拓馬
         self.rct.centery = -random.randint(0,1000)
         self.vx, self.vy = vxy # 練習6
 
-
     def blit(self,scr: Screen):
-
         scr.sfc.blit(self.sfc,self.rct)
-    
+
     def update(self,scr: Screen):#移動を制御
 
         self.rct.move_ip(self.vx, self.vy)
@@ -109,13 +108,12 @@ class teki:#上から降ってくる敵クラス C0A21120宮田拓馬
             self.rct.centery = 0
             self.rct.centerx = random.randint(0, scr.rct.width)
 
+
 def music():
 
     pygame.mixer.init()
     pygame.mixer.music.load("ex06/ex06_MusMus-BGM-146.mp3")
     pygame.mixer.music.play(-1)
-
-
 
 def main():
 
@@ -125,9 +123,8 @@ def main():
     clock = pg.time.Clock()
     scr = Screen("見分けろ！こうかとん", (1600, 900), "ex06/fig/神殿.png")
     kkt = Bird("ex06/fig/9.png", a, (900, 400))
-
     xsp=2
-  
+
     anemy = teki(0.5,"ex06/fig/敵３.png",(0,xsp),scr)#敵を生成   C0A21120宮田拓馬
     anemy1 = teki(0.5,"ex06/fig/敵５.png",(0,xsp),scr)#敵を生成
     anemy2 = teki(0.5,"ex06/fig/敵４.png",(0,xsp),scr)#敵を生成
@@ -178,6 +175,7 @@ def main():
             return 
 
 
+
         #tekiに当たった時の処理 C0A21120 宮田拓馬
         if kkt.rct.colliderect(anemy.rct):
             score-=1
@@ -186,12 +184,12 @@ def main():
     
         if kkt.rct.colliderect(anemy1.rct):
             score-=2
-            anemy1 = teki(0.5,"ex06/fig/敵５.png",(0,xsp1),scr)
+            anemy1 = teki(0.5,"ex06/fig/敵５.png",(0,xsp),scr)
            
 
         if kkt.rct.colliderect(anemy2.rct):
             score-=3
-            anemy2 = teki(0.5,"ex06/fig/敵４.png",(0,xsp2),scr)
+            anemy2 = teki(0.5,"ex06/fig/敵４.png",(0,xsp),scr)
 
         if score<0:
             return
