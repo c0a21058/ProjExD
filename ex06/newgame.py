@@ -4,6 +4,7 @@ import random
 import pygame.mixer
 
 
+
 width = 1600
 
 class Screen:
