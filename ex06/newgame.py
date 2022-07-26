@@ -61,7 +61,7 @@ class Bird:
     
 
 
-class food:
+class Food:
 
     def __init__(self, color, size, vxy, scr: Screen):
 
@@ -83,7 +83,7 @@ class food:
         if  self.rct.centerx <0 :
 
              self.rct.centerx = 1700+random.randint(10,1000)
-class teki:#上から降ってくる敵クラス C0A21120宮田拓馬
+class Teki:#上から降ってくる敵クラス C0A21120宮田拓馬
 
     def __init__(self,size,image,vxy,scr: Screen):
 
@@ -128,13 +128,13 @@ def main():
 
     xsp=2
   
-    anemy = teki(0.5,"ex06/fig/敵３.png",(0,xsp),scr)#敵を生成   C0A21120宮田拓馬
-    anemy1 = teki(0.5,"ex06/fig/敵５.png",(0,xsp),scr)#敵を生成
-    anemy2 = teki(0.5,"ex06/fig/敵４.png",(0,xsp),scr)#敵を生成
+    anemy = Teki(0.5,"ex06/fig/敵３.png",(0,xsp),scr)#敵を生成   C0A21120宮田拓馬
+    anemy1 = Teki(0.5,"ex06/fig/敵５.png",(0,xsp),scr)#敵を生成
+    anemy2 = Teki(0.5,"ex06/fig/敵４.png",(0,xsp),scr)#敵を生成
     
-    food1= food((255,255,0), 30, (-3,0), scr)#一つ目の餌を作成
-    food2= food((255,255,0), 40, (-2,0), scr)#二つ目の餌を作成
-    food3= food((255,255,0), 50, (-1,0), scr)#三つ目の餌を作成
+    food1= Food((255,255,0), 30, (-3,0), scr)#一つ目の餌を作成
+    food2= Food((255,255,0), 40, (-2,0), scr)#二つ目の餌を作成
+    food3= Food((255,255,0), 50, (-1,0), scr)#三つ目の餌を作成
 
     music()
 
@@ -163,15 +163,15 @@ def main():
 
         if kkt.rct.colliderect(food1.rct):#一つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
             score += 1
-            food1= food((255,255,0), 30, (-3,0), scr)
+            food1= Food((255,255,0), 30, (-3,0), scr)
         
         if kkt.rct.colliderect(food2.rct):##二つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
             score += 2
-            food2= food((255,255,0), 40, (-2,0), scr)
+            food2= Food((255,255,0), 40, (-2,0), scr)
         
         if kkt.rct.colliderect(food3.rct):##三つ目の餌と当たった時にスコアを＋１して餌を画面外に移動
             score += 3
-            food3= food((255,255,0), 50, (-1,0), scr)
+            food3= Food((255,255,0), 50, (-1,0), scr)
 
         
         if score<0:#スコアがマイナスになったらゲームを強制終了
@@ -181,17 +181,17 @@ def main():
         #tekiに当たった時の処理 C0A21120 宮田拓馬
         if kkt.rct.colliderect(anemy.rct):
             score-=1
-            anemy = teki(0.5,"ex06/fig/敵３.png",(0,xsp),scr)
+            anemy = Teki(0.5,"ex06/fig/敵３.png",(0,xsp),scr)
             
     
         if kkt.rct.colliderect(anemy1.rct):
             score-=2
-            anemy1 = teki(0.5,"ex06/fig/敵５.png",(0,xsp),scr)
+            anemy1 = Teki(0.5,"ex06/fig/敵５.png",(0,xsp),scr)
            
 
         if kkt.rct.colliderect(anemy2.rct):
             score-=3
-            anemy2 = teki(0.5,"ex06/fig/敵４.png",(0,xsp),scr)
+            anemy2 = Teki(0.5,"ex06/fig/敵４.png",(0,xsp),scr)
 
         if score<0:
             return
@@ -204,10 +204,10 @@ def main():
             anemy.rct.centerx = random.randint(0,1600) 
 
         if  anemy1.rct.bottom<=0:# 領域外
-            anemy1 = teki(0.5,"ex06/fig/敵５.png",(0,xsp),scr)
+            anemy1 = Teki(0.5,"ex06/fig/敵５.png",(0,xsp),scr)
 
         if anemy2.rct.bottom<=0: # 領域外
-            anemy2 = teki(0.5,"ex06/fig/敵４.png",(0,xsp),scr)
+            anemy2 = Teki(0.5,"ex06/fig/敵４.png",(0,xsp),scr)
             
         
 
